@@ -9,10 +9,6 @@ inputs:
     description: 'Content files added'
     required: true
   
-outputs:
-  status-code-action: 
-  description: 'status code'
-
 runs:
 using: 'node12'
 main: 'Modificar_Configuracion.js'
