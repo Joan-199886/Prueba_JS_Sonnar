@@ -11,4 +11,4 @@ inputs:
     default: 'World'
 runs:
   using: 'node12'
-  main: 'Modificar_Configuracion.js'
+  main: 'index.js'
