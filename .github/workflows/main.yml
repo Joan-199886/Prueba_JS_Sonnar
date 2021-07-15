@@ -30,6 +30,9 @@ jobs:
         uses: lots0logs/gh-action-get-changed-files@2.1.4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get the output time
+        run: echo "hola mundo"
   
   Liquibase_Action:
   
