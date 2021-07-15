@@ -31,12 +31,8 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
    
-      - name: print files
-        run: |
-          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
-          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
-          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
-          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
   
   Liquibase_Action:
   
