@@ -8,7 +8,6 @@ inputs:
   files-added:
     description: 'Content files added'
     required: true
-  
 runs:
-using: 'node12'
-main: 'Modificar_Configuracion.js'
+  using: 'node12'
+  main: 'Modificar_Configuracion.js'
