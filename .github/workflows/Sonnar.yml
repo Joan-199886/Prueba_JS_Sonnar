@@ -44,10 +44,10 @@ jobs:
         node-version: '12'
     - run: npm install
     - name: token repo
-    id: token
-    uses: ./Mod_Config
-    with:
-      files-added: ${{ needs.scan_files.outputs.file_added }}
+      id: token
+      uses: ./Mod_Config
+      with:
+       files-added: ${{ needs.scan_files.outputs.file_added }}
   
   #create_pull_request:
   #  runs-on: ubuntu-latest
