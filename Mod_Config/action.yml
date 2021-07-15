@@ -8,9 +8,6 @@ inputs:
   description: 'Content files added'
   required: true
 
-  repo-token:
-  description: 'information repo'
-  required: true
 
 outputs:
   status-code-action: 
