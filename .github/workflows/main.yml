@@ -30,6 +30,10 @@ jobs:
         uses: lots0logs/gh-action-get-changed-files@2.1.4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
+     
+      - name: print files
+        run: |
+          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
   
   Liquibase_Action:
   
