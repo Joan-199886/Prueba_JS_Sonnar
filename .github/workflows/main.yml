@@ -52,3 +52,5 @@ jobs:
       with:
        files-added: "holamundo" 
        #${{ needs.scan_files.outputs.file_added }}
+    - name: Get the output time
+      run: "hola ${{ needs.scan_files.outputs.file_added }}"
