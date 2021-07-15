@@ -3,12 +3,12 @@ description: 'Modify config of sonnar'
 brading:
   icon: 'database'
   color: 'green'
+
 inputs: 
   files-added:
-  description: 'Content files added'
-  required: true
-
-
+    description: 'Content files added'
+    required: true
+  
 outputs:
   status-code-action: 
   description: 'status code'
