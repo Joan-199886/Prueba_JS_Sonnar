@@ -51,6 +51,6 @@ jobs:
       uses: ./Mod_Config
       with:
        files-added: ${{ needs.scan_files.outputs.file_added }}
-
+       
     - name: Get the output time
-      run: "hola ${{ needs.scan_files.outputs.file_added }}"
+      run: echo "hola ${{ needs.scan_files.outputs.file_added }}"
