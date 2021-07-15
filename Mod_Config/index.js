@@ -4,7 +4,8 @@ const github = require('@actions/github');
 try {
     // `who-to-greet` input defined in action metadata file
     const url = core.getInput('files-added');
-    console.log(`Hello ${url}!`);
+    console.log(url);
+     console.log("holamundo");
 
   } catch (error) {
     core.setFailed(error.message);

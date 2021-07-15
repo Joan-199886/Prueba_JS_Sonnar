@@ -30,6 +30,9 @@ jobs:
         uses: lots0logs/gh-action-get-changed-files@2.1.4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
+   
+      - name: Get the output time
+        run: echo "hola mundo"
   
   Liquibase_Action:
   
@@ -47,4 +50,7 @@ jobs:
       id: token
       uses: ./Mod_Config
       with:
-       files-added: ${{ needs.scan_files.outputs.file_added }}
+       files-added: "holamundo" 
+       #${{ needs.scan_files.outputs.file_added }}
+    - name: Get the output time
+      run: "hola ${{ needs.scan_files.outputs.file_added }}"
