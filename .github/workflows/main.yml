@@ -34,6 +34,9 @@ jobs:
       - name: print files
         run: |
           echo 'Nombre archivo:${{ steps.token.outputs.added }}'
+          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
+          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
+          echo 'Nombre archivo:${{ steps.token.outputs.added }}'
   
   Liquibase_Action:
   
