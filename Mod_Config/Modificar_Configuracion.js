@@ -3,8 +3,8 @@ const github = require('@actions/github');
 
 try {
     // `who-to-greet` input defined in action metadata file
-    const nameToGreet = core.getInput('files-added');
-    console.log(`Hello ${nameToGreet}!`);
+    const url = core.getInput('files-added');
+    console.log(`Hello ${url}!`);
 
   } catch (error) {
     core.setFailed(error.message);
