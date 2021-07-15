@@ -1,0 +1,24 @@
+{
+  "name": "Prueba_JS_Sonnar-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joan-199886/Prueba_JS_Sonnar.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joan-199886/Prueba_JS_Sonnar/issues"
+  },
+  "homepage": "https://github.com/Joan-199886/Prueba_JS_Sonnar#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^5.0.0"
+  }
+}
