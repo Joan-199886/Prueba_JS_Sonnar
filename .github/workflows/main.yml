@@ -28,7 +28,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - id: token
-        uses: Joan-199886/gh-action-get-changed-files@2.1.4
+        uses: lots0logs/gh-action-get-changed-files@2.1.4
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
   
