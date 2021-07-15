@@ -32,33 +32,3 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
   
-  Liquibase_Action:
-    runs-on: ubuntu-latest
-    needs: scan_files
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Node setup
-      uses: actions/setup-node@v2
-      with:
-        node-version: '12'
-    - run: npm install
-    - name: token repo
-      id: token
-      uses: ./Mod_Config
-      with:
-       files-added: ${{ needs.scan_files.outputs.file_added }}
-  
-  #create_pull_request:
-  #  runs-on: ubuntu-latest
-  #  needs: scan_files
-  #  steps:
-  #  - uses: actions/checkout@v2
-  #  - name: pull-request
-  #    uses: repo-sync/pull-request@v2
-  #    with:
-  #      destination_branch: "main"
-  #      pr_title: "Pulling ${{ github.ref }} into master"
-  #      pr_body: "Hola mundo"
-  #      github_token: ${{ secrets.GITHUB_TOKEN }}
-
