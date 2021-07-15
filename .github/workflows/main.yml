@@ -33,7 +33,7 @@ jobs:
 
       - name: Get the output time
         run: echo "hola mundo"
-             echo ${{outputs.file_added}}
+             echo ${{ outputs.file_added }}
   
   Liquibase_Action:
   
