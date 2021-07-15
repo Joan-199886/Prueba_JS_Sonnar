@@ -11,9 +11,6 @@ on:
       - '**.sql'
   
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -45,5 +42,5 @@ jobs:
       with:
         destination_branch: "main"
         pr_title: "Pulling ${{ github.ref }} into master"
-        pr_body: "Hola mundo ${{ needs.scan_files.outputs.file_added}}"
+        pr_body: "Hola mundo ${{ needs.scan_files.outputs.file_added }}"
         github_token: ${{ secrets.GITHUB_TOKEN }}
