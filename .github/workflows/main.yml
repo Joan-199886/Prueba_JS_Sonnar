@@ -32,3 +32,15 @@ jobs:
         with: 
           token: ${{ secrets.GITHUB_TOKEN }}
   
+  create_pull_request:
+    runs-on: ubuntu-latest
+    needs: scan_files
+    steps:
+    - uses: actions/checkout@v2
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "main"
+        pr_title: "Pulling ${{ github.ref }} into master"
+        pr_body: "Hola mundo"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
