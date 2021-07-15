@@ -6,7 +6,6 @@ try {
     const url = core.getInput('files-added');
     console.log(url)
    
-
   } catch (error) {
     core.setFailed(error.message);
   }
