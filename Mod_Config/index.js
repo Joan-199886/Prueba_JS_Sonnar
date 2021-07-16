@@ -8,13 +8,12 @@ try {
 
     const url = core.getInput('files-added');
     const token = core.getInput('token').split('').toString();
-    const url_config = core.getInput('url-config').split('').join("");
+    const url_config = core.getInput('url-config').split('');
    
- 
     console.log("====================================================");
     console.log("url: "+url);
-    console.log("url config: "+ url_config);
-    console.log("token: "+token );
+    console.log("url config: "+ url_config.join(""));
+    console.log("token: "+token.join("") );
     
   } catch (error) {
     core.setFailed(error.message);
