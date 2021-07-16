@@ -16,11 +16,7 @@ try {
 
     var secrets = JSON.parse(process.env.SECRETS);
 
-    for(var clave in secrets)
-    {
-      console.log("clave: "+clave)
-    }
-    
+    console.log("SECRETS"+secrets);
     console.log("url: "+url);
     console.log("url config: "+ url_config);
     console.log("token: "+token);
