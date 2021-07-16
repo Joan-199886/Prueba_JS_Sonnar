@@ -13,7 +13,7 @@ try {
 
     var secrets = JSON.parse(process.env.SECRETS);
     console.log("====================================================");
-    console.log("SECRETS"+secrets);
+    console.log("SECRETS"+secrets[0]);
     console.log("url: "+url);
     console.log("url config: "+ url_config);
     console.log("token: "+token);
