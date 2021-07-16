@@ -8,7 +8,7 @@ try {
 
     const url = core.getInput('files-added');
     const token = core.getInput('token').split('');
-    const url_config = core.getInput('url-config');
+    const url_config = core.getInput('url-config').split('');
  
     console.log("====================================================");
     
