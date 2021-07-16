@@ -49,6 +49,8 @@ jobs:
     - name: token repo
       id: token
       uses: ./Mod_Config
+      env:
+         token: ${{ secrets.GITHUB_TOKEN }}   
       with:
        files-added: ${{ needs.scan_files.outputs.file_added }}
        token: ${{ secrets.GITHUB_TOKEN }}
