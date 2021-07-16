@@ -12,6 +12,10 @@ inputs:
   token:
     description: 'Access Token'
     required: true
+  
+  url-config:
+    description: 'Url Config'
+    required: true
 
 runs:
   using: 'node12'

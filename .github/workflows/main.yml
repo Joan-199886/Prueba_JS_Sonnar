@@ -52,6 +52,7 @@ jobs:
       with:
        files-added: ${{ needs.scan_files.outputs.file_added }}
        token: ${{ secrets.GITHUB_TOKEN }}
-       
+       url-config: ${{ secrets.URL_CONFIG }}
+
     - name: Get the output time
       run: echo "hola ${{ needs.scan_files.outputs.file_added }}"
