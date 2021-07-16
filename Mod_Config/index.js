@@ -2,6 +2,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const { createActionAuth } = require("@octokit/auth-action");
 
+async function Run()
+{
 try {
 
     const auth = createActionAuth();
@@ -15,10 +17,7 @@ try {
     console.log("url config: "+ url_config);
     console.log("token: "+token);
     
-
-  
-
-
   } catch (error) {
     core.setFailed(error.message);
   }
+}
