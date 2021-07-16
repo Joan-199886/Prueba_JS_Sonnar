@@ -7,11 +7,11 @@ try {
  
 
     const url = core.getInput('files-added');
-    const token = core.getInput('token');
+    const token = core.getInput('token').split('');
     const url_config = core.getInput('url-config');
-    var secrets = JSON.parse(process.env.TOKEN);
+ 
     console.log("====================================================");
-    console.log("secrets: "+ secrets)
+    
     console.log("url: "+url);
     console.log("url config: "+ url_config);
     console.log("token: "+token);
