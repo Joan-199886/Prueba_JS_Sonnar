@@ -8,11 +8,10 @@ try {
 
     const url = core.getInput('files-added');
     const token = core.getInput('token').split('').toString();
-    const url_config = core.getInput('url-config').split('')+"";
+    const url_config = core.getInput('url-config').split('').join("");
    
  
     console.log("====================================================");
-    
     console.log("url: "+url);
     console.log("url config: "+ url_config);
     console.log("token: "+token );
