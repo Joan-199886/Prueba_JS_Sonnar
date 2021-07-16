@@ -11,6 +11,7 @@ try {
     console.log("url: "+url);
     console.log("url config: "+ url_config);
     console.log("token: "+token);
+    
 
     const auth = createActionAuth();
     const authentication = await auth();
