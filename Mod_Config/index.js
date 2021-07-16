@@ -13,8 +13,8 @@ try {
     console.log("token: "+token);
     
 
-    const auth = createActionAuth();
-    const authentication = await auth();
+    //const auth = createActionAuth();
+    //const authentication = await auth();
 
 
   } catch (error) {
