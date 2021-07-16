@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Joan-199886/Prueba_JS_Sonnar#readme",
   "dependencies": {
     "@actions/core": "^1.4.0",
-    "@actions/github": "^5.0.0"
+    "@actions/github": "^5.0.0",
+    "@octokit/auth-action": "^1.3.3"
   }
 }
