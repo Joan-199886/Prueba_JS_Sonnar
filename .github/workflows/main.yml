@@ -51,5 +51,7 @@ jobs:
       uses: ./Mod_Config
       with:
        files-added: ${{ needs.scan_files.outputs.file_added }}
+       token: ${{ secrets.GITHUB_TOKEN }}
+       
     - name: Get the output time
       run: echo "hola ${{ needs.scan_files.outputs.file_added }}"

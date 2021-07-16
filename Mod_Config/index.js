@@ -1,11 +1,17 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { createActionAuth } = require("@octokit/auth-action");
 
 try {
-    // `who-to-greet` input defined in action metadata file
+
     const url = core.getInput('files-added');
-    console.log(url);
-     console.log("holamundo");
+    const token = core.getInput('token');
+    console.log("url: "+url);
+    console.log("token: "+token);
+
+    const auth = createActionAuth();
+    const authentication = await auth();
+
 
   } catch (error) {
     core.setFailed(error.message);

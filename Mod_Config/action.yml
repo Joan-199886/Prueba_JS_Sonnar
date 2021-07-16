@@ -8,7 +8,11 @@ inputs:
   files-added:
     description: 'Content files added'
     required: true
-    default: 'World'
+
+  token:
+    description: 'Access Token'
+    required: true
+
 runs:
   using: 'node12'
   main: 'index.js'
