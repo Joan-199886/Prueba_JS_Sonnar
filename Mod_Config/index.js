@@ -4,56 +4,80 @@ const { Base64 } = require("js-base64");
 const { createActionAuth } = require("@octokit/auth-action");
 const { Octokit } = require("@octokit/rest");
 
-async function overwriteFile(repoToken,pathFile)
-{
+async function overwriteFile(repoToken, pathFile) {
+
   const auth = createActionAuth();
   const authentication = await auth();
   const octokit = new Octokit({
-    authentication,
+    authentication
   });
-  const {payload: {repository} } = github.context;
-    
+
+ // const octokit = github.getOctokit(repoToken);
+
+  const { payload: { repository } } = github.context;
+
   const repoFullName = repository.full_name;
 
-  if(repoFullName)
-  {
-    const [owner,repo] = repoFullName.split("/");
+  if (repoFullName) {
+    try {
+      const [owner, repo] = repoFullName.split("/");
+    const sha = await getSHA(owner, repo, pathFile, octokit);
+    const content = Base64.encode("actualice el documento:" + pathFile);
+    const message = "Actualizacion de datos";
 
-    console.log("pathFile : "+ pathFile);
-    console.log("owner : "+owner);
-    console.log("repo : "+repo);
-  }  
+    console.log("pathFile : " + pathFile);
+    console.log("owner : " + owner);
+    console.log("repo : " + repo);
+    console.log("sha : " + sha);
+
+    
+    const httpResult = await octokit.repos.createOrUpdateFileContents({
+      owner,
+      repo,
+      path: "Prueba_JS_Sonnar/Sonnar_Config/config.txt",
+      message: 'update master.xml',
+      content: content,
+      branch: "main",
+      sha
+      }
+    );
+    } catch (error) {
+      core.setFailed(error); 
+    }
+    
+  }
 
 }
 
-async function getSHA(owner,repo,path) 
-{
-  const repo_Token = core.getInput('token');
-  const octokit = github.getOctokit(repo_Token);
-  const result = await octokit.repos.getContents({ owner, repo, path, });
-  console.log("Resultado:"+result);
+async function getSHA(owner, repo, path, octokit) {
+  //const repo_Token = core.getInput('token');
+  //const octokit = github.getOctokit(repo_Token);
+  //const result = await octokit.repos.getContent({ owner, repo, path, });
+
+  const result = await octokit.repos.getContent({ owner, repo, path, });
+
   const sha = result.data.sha;
+
   return sha;
 }
 
-async function Run(){
-try {
+async function Run() {
+  try {
     const url = core.getInput('files-added');
     const repo_token = core.getInput('token');
-    const url_config_token = core.getInput('url-config').split(" ");
+    const url_config_token = core.getInput('url-config').split(";");
     // var branch = context.payload.pull_request.head.ref;
-    console.log("url_config : "+url_config_token);
-    if(url_config_token && url )
-    {
+
+    if (url_config_token && url) {
       var url_config = url_config_token[0];
-      var url_config = url_config + "/config.txt"
-      overwriteFile(repo_token,url_config);
+      var url_config = url_config;
+      overwriteFile(repo_token, url_config);
 
     }
-    
-    
 
-    
+
+
+
   } catch (error) {
     core.setFailed(error.message);
   }
