@@ -1,56 +1,39 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Base64 } = require("js-base64");
-
+const { createActionAuth } = require("@octokit/auth-action");
+const { Octokit } = require("@octokit/rest");
 
 async function overwriteFile(repoToken,pathFile)
 {
-    const {payload: {repository} } = github.context;
-
-    const repoFullName = repository.full_name;
-
-
-    if(repoFullName)
-    {
-      const [owner,repo] = repoFullName.split("/");
-
-      var master="El archivo ha sido modificado " + pathFile;
-
-      const octokit = github.getOctokit(repoToken);
-      const sha = await getSHA(owner,repo,pathFile);
-      const contentFile = Base64.encode(master);
-
-      console.log("SHA :"+sha);
-      console.log("OWNER : "+owner);
-      console.log("REPO : "+repo);
-      console.log("PATH FILE CONFIG : "+pathFile);
-
-      const httpResult= await octokit.repos.createOrUpdateFileContents({
-        owner,
-        repo,
-        path: pathFile,
-        message: 'update master.xml',
-        content: contentFile,
-        branch: "main",
-        sha
-        }
-      );
-      console.log(httpResult);
-      return httpResult.status.toString();
-      
-    }
+  const auth = createActionAuth();
+  const authentication = await auth();
+  const octokit = new Octokit({
+    authentication,
+  });
+  const {payload: {repository} } = github.context;
     
+  const repoFullName = repository.full_name;
+
+  if(repoFullName)
+  {
+    const [owner,repo] = repoFullName.split("/");
+
+    console.log("pathFile : "+ pathFile);
+    console.log("owner : "+owner);
+    console.log("repo : "+repo);
+  }  
+
 }
 
-async function getSHA(owner,repo,path) {
+async function getSHA(owner,repo,path) 
+{
   const repo_Token = core.getInput('token');
   const octokit = github.getOctokit(repo_Token);
-  console.log("Repos"+octokit)
-  //const result = await octokit.repos.getContent({ owner, repo, path, });
-
-  //console.log("Resultado:"+result);
-  //const sha = result.data.sha;
-  return sha="";
+  const result = await octokit.repos.getContents({ owner, repo, path, });
+  console.log("Resultado:"+result);
+  const sha = result.data.sha;
+  return sha;
 }
 
 async function Run(){
@@ -59,7 +42,7 @@ try {
     const repo_token = core.getInput('token');
     const url_config_token = core.getInput('url-config').split(" ");
     // var branch = context.payload.pull_request.head.ref;
-
+    console.log("url_config : "+url_config_token);
     if(url_config_token && url )
     {
       var url_config = url_config_token[0];
