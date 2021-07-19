@@ -46,11 +46,7 @@ async function overwriteFile(repoToken,pathFile)
 async function getSHA(owner,repo,path) {
   const repo_Token = core.getInput('token');
   const octokit = github.getOctokit(repo_Token);
-  const result = await octokit.repos.getContents({
-    owner,
-    repo,
-    path,
-  });
+  const result = await octokit.repos.getContents({owner,repo,path});
   const sha = result.data.sha;
   return sha;
 }
