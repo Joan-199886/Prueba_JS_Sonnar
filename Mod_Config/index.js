@@ -15,7 +15,7 @@ async function overwriteFile(repoToken,pathFile)
     {
       const [owner,repo] = repoFullName.split("/");
 
-      var master="El archivo ha sido modificado "+ url;
+      var master="El archivo ha sido modificado " + pathFile;
 
       const octokit = github.getOctokit(repoToken);
       const sha = await getSHA(owner,repo,pathFile);
