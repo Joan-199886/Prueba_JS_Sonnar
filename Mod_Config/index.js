@@ -22,9 +22,9 @@ async function overwriteFile(repoToken,pathFile)
       const contentFile = Base64.encode(master);
 
       console.log("SHA :"+sha);
-      console.log("OWNER : "+owener);
+      console.log("OWNER : "+owner);
       console.log("REPO : "+repo);
-      console.log("PATH FILE CONFIG"+pathFile);
+      console.log("PATH FILE CONFIG : "+pathFile);
 
       const httpResult= await octokit.repos.createOrUpdateFileContents({
         owner,
@@ -46,7 +46,7 @@ async function overwriteFile(repoToken,pathFile)
 async function getSHA(owner,repo,path) {
   const repo_Token = core.getInput('token');
   const octokit = github.getOctokit(repo_Token);
-  const result = await octokit.repos.getContent({
+  const result = await octokit.repos.getContents({
     owner,
     repo,
     path,
