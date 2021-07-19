@@ -65,8 +65,8 @@ try {
     if(url_config_token && url )
     {
       var url_config = url_config_token[0];
-      var url_config = url_config + "config.txt"
-      overwriteFile(repo_token,url_config_token);
+      var url_config = url_config + "/config.txt"
+      overwriteFile(repo_token,url_config);
 
     }
     
