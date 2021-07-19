@@ -1,15 +1,10 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const { Base64 } = require("js-base64");
-const { Octokit } = require("@octokit/rest");
 
 
 async function overwriteFile(repoToken,pathFile)
 {
-  const octokit = new Octokit({
-    auth: repoToken
-  });
-    
     const {payload: {repository} } = github.context;
 
     const repoFullName = repository.full_name;
@@ -22,6 +17,7 @@ async function overwriteFile(repoToken,pathFile)
       var master="El archivo ha sido modificado " + pathFile;
 
       const octokit = github.getOctokit(repoToken);
+      const sha = await getSHA(owner,repo,pathFile);
       const contentFile = Base64.encode(master);
 
       console.log("SHA :"+sha);
@@ -30,21 +26,15 @@ async function overwriteFile(repoToken,pathFile)
       console.log("PATH FILE CONFIG : "+pathFile);
 
       const httpResult= await octokit.repos.createOrUpdateFileContents({
-        // replace the owner and email with your own details
-        owner: owner,
-        repo: repo,
+        owner,
+        repo,
         path: pathFile,
-        message: "feat: Added OUTPUT.md programatically",
+        message: 'update master.xml',
         content: contentFile,
-        committer: {
-          name: `Octokit Bot`,
-          email: "joan-herrera@upc.edu.co",
-        },
-        author: {
-          name: "Octokit Bot",
-          email: "joan-herrera@upc.edu.co",
-        },
-      });
+        branch: "main",
+        sha
+        }
+      );
       console.log(httpResult);
       return httpResult.status.toString();
       
@@ -55,10 +45,12 @@ async function overwriteFile(repoToken,pathFile)
 async function getSHA(owner,repo,path) {
   const repo_Token = core.getInput('token');
   const octokit = github.getOctokit(repo_Token);
-  const result = await octokit.repos.getContent({ owner, repo, path });
-  console.log("Resultado:"+result);
-  const sha = result.data.sha;
-  return sha;
+  console.log("Repos"+octokit)
+  //const result = await octokit.repos.getContent({ owner, repo, path, });
+
+  //console.log("Resultado:"+result);
+  //const sha = result.data.sha;
+  return sha="";
 }
 
 async function Run(){
