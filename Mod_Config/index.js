@@ -10,6 +10,7 @@ async function overwriteFile(repoToken,pathFile)
 
     const repoFullName = repository.full_name;
 
+
     if(repoFullName)
     {
       const [owner,repo] = repoFullName.split("/");
@@ -19,6 +20,11 @@ async function overwriteFile(repoToken,pathFile)
       const octokit = github.getOctokit(repoToken);
       const sha = await getSHA(owner,repo,pathFile);
       const contentFile = Base64.encode(master);
+
+      console.log("SHA :"+sha);
+      console.log("OWNER : "+owener);
+      console.log("REPO : "+repo);
+      console.log("PATH FILE CONFIG"+pathFile);
 
       const httpResult= await octokit.repos.createOrUpdateFileContents({
         owner,
@@ -53,13 +59,14 @@ async function Run(){
 try {
     const url = core.getInput('files-added');
     const repo_token = core.getInput('token');
-    const url_config_token = core.getInput('url-config');
+    const url_config_token = core.getInput('url-config').split(" ");
     // var branch = context.payload.pull_request.head.ref;
 
-    if(url_config && url )
+    if(url_config_token && url )
     {
-      
-      overwriteFile(repo_token,url_config_token)
+      var url_config = url_config_token[0];
+      var url_config = url_config + "config.txt"
+      overwriteFile(repo_token,url_config_token);
 
     }
     
