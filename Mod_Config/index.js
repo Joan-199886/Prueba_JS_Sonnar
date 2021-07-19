@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { createActionAuth } = require("@octokit/auth-action");
 const { Base64 } = require("js-base64");
 
 
@@ -46,7 +45,7 @@ async function overwriteFile(repoToken,pathFile)
 async function getSHA(owner,repo,path) {
   const repo_Token = core.getInput('token');
   const octokit = github.getOctokit(repo_Token);
-  const result = await octokit.repos.getContents({ owner, repo, path });
+  const result = await octokit.repos.getContent({ owner, repo, path });
   console.log("Resultado:"+result);
   const sha = result.data.sha;
   return sha;
