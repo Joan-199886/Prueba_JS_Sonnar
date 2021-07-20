@@ -77,9 +77,10 @@ async function Run() {
       overwriteFile(repo_token, url_config);
     }
 
-  } catch (error) {
+  } catch (error) { 
     core.setFailed(error.message);
   }
+  
 
 }
 Run();
